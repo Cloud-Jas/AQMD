@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "raspberrypi.changefeed": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7015",
+      "launchBrowser": false
+    }
+  }
+}

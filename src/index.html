@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AQMD</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Add references to the Azure Maps Map control JavaScript and CSS files. -->
+    <link rel="stylesheet" href="https://atlas.microsoft.com/sdk/javascript/mapcontrol/2/atlas.min.css" type="text/css" />
+    <script src="https://atlas.microsoft.com/sdk/javascript/mapcontrol/2/atlas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@aspnet/signalr@1.0.3/dist/browser/signalr.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>
+
+    <script type='text/javascript'>
+
+    function GetConnectionInfo() {
+    return axios.get('https://func-raspberrypi.azurewebsites.net/api/negotiate?userid=test')
+        .then(function (response) {
+            return response.data
+        }).catch(console.error)
+}
+GetConnectionInfo().then(info  =>{
+        info.accessToken = info.accessToken || info.accessKey;
+        info.url = info.url || info.endpoint;
+        const options = {
+            accessTokenFactory: () => info.accessToken
+        };
+        const connection = new WebSocket(info.url);
+
+        connection.onopen = () => console.log('connected');
+        connection.onmessage= (event) => newMessage(event);
+        connection.onclose= () => console.log('disconnected');
+        
+    });
+
+    let counter = 0;
+    let datasource;
+    let aqmd = [];
+    function newMessage(message) {
+        var parseData= JSON.parse(message.data);
+        console.log(parseData);
+        var newAqmdPin = new atlas.Shape(new atlas.data.Point([parseData[0].Body.lng, parseData[0].Body.lat]), parseData[0].id);
+        newAqmdPin.addProperty('pm_25', parseData[0].Body["pm_25"]);
+        newAqmdPin.addProperty('pm_10', parseData[0].Body["pm_10"]);
+        aqmd[parseData[0].id] = newAqmdPin;
+        datasource.setShapes(Object.values(aqmd));
+    }
+
+    function generateUser() {
+            return 'User ' + Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
+        }
+
+    var map;
+    function GetMap() {
+            //Initialize a map instance.
+            map = new atlas.Map('myMap', {
+                center:  [80.1683535,13.136500833333333],
+                style: 'light',
+                zoom: 8,
+                //Add your Azure Maps subscription key to the map SDK. Get an Azure Maps key at https://azure.com/maps
+                authOptions: {
+                    authType: 'subscriptionKey',
+                    subscriptionKey: 'Zyx08ALyZ7PPUSVpdpbkD5ftufpUvto0obZFNVdNfnA'
+                }
+            });
+            //Wait until the map resources are ready.
+            map.events.add('ready', function () {
+                datasource = new atlas.source.DataSource();
+                map.sources.add(datasource);
+                //Create a symbol layer using the data source and add it to the map
+                map.layers.add(
+                    new atlas.layer.SymbolLayer(datasource, null, {
+                        iconOptions: {
+                        ignorePlacement: true,
+                        allowOverlap: true,
+                        size:0.5
+            },
+                        textOptions: {
+                            textField: ['concat', ['to-string', ['get', 'pm_25']], ',', ['get', 'pm_10']],
+                            color: 'orange'
+                        }
+                        
+
+                    })
+                );  
+            });
+        }
+    </script>
+</head>
+<body onload="GetMap()">
+    <div id="myMap" style="position:relative;width:100%;min-width:290px;height:600px;"></div>
+</body>
+</html>

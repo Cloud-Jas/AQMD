@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "storage1": {
+      "type": "storage.emulator",
+      "connectionId": "AzureWebJobsStorage"
+    },
+    "secrets1": {
+      "type": "secrets.user"
+    },
+    "cosmosdb1": {
+      "secretStore": "LocalSecretsFile",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-raspberrypi",
+      "type": "cosmosdb.azure",
+      "connectionId": "cosmosconnection",
+      "dynamicId": null
+    },
+    "appInsights1": {
+      "type": "appInsights.sdk"
+    }
+  }
+}
