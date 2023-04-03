@@ -4,8 +4,6 @@
 
 Air Quality Monitoring Delivery - Project created for Azure Blogathon event under the Social impact / Sustainability category. Idea is to make use of Battery operated Government Garbage collector vehicle to track air pollution in each street.
 
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FCloud-Jas%2FAQMD%2Fmain%2Fdeploy%2Fazuredeploy.json)
-
 # Architecutre
 
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/4ubgoferawvx7pqrgpp9.png)
