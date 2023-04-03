@@ -41,13 +41,7 @@
         "databaseAccounts_cosmos_raspberrypi_name": {
             "value": null
         },
-        "smartdetectoralertrules_failure_anomalies___appi_func_raspberrypi_name": {
-            "value": null
-        },
-        "actiongroups_application_insights_smart_detection_externalid": {
-            "value": null
-        },
-        "workspaces_defaultworkspace_83343ae6_3277_475f_8be1_946e5d6d9359_eus_externalid": {
+        "workspace_name": {
             "value": null
         }
     }

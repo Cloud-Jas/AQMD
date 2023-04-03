@@ -51,20 +51,14 @@
             "defaultValue": "cosmos-raspberrypi",
             "type": "String"
         },
-        "smartdetectoralertrules_failure_anomalies___appi_func_raspberrypi_name": {
-            "defaultValue": "failure anomalies - appi-func-raspberrypi",
-            "type": "String"
-        },
-        "actiongroups_application_insights_smart_detection_externalid": {
-            "defaultValue": "/subscriptions/83343ae6-3277-475f-8be1-946e5d6d9359/resourceGroups/az360-serverless-rg/providers/microsoft.insights/actiongroups/application insights smart detection",
-            "type": "String"
-        },
-        "workspaces_defaultworkspace_83343ae6_3277_475f_8be1_946e5d6d9359_eus_externalid": {
-            "defaultValue": "/subscriptions/83343ae6-3277-475f-8be1-946e5d6d9359/resourceGroups/defaultresourcegroup-eus/providers/microsoft.operationalinsights/workspaces/defaultworkspace-83343ae6-3277-475f-8be1-946e5d6d9359-eus",
-            "type": "String"
+        "workspace_name":{
+            "defaultValue":"workspace",
+            "type":"String"
         }
     },
-    "variables": {},
+    "variables": {
+        "workspaceName": "[format('{0}-{1}-{2}',parameters('workspace_name'), parameters('location'), uniqueString(resourceGroup().id))]"
+    },
     "resources": [
         {
             "type": "Microsoft.Devices/IotHubs",
@@ -248,7 +242,7 @@
                 "Flow_Type": "Redfield",
                 "Request_Source": "IbizaWebAppExtensionCreate",
                 "RetentionInDays": 90,
-                "WorkspaceResourceId": "[parameters('workspaces_defaultworkspace_83343ae6_3277_475f_8be1_946e5d6d9359_eus_externalid')]",
+                "WorkspaceResourceId": "[resourceId('Microsoft.OperationalInsights/workspaces', variables('workspaceName'))]",
                 "IngestionMode": "LogAnalytics",
                 "publicNetworkAccessForIngestion": "Enabled",
                 "publicNetworkAccessForQuery": "Enabled"
@@ -423,35 +417,6 @@
                 "targetWorkerCount": 0,
                 "targetWorkerSizeId": 0,
                 "zoneRedundant": false
-            }
-        },
-        {
-            "type": "microsoft.alertsmanagement/smartdetectoralertrules",
-            "apiVersion": "2021-04-01",
-            "name": "[parameters('smartdetectoralertrules_failure_anomalies___appi_func_raspberrypi_name')]",
-            "location": "global",
-            "dependsOn": [
-                "[resourceId('microsoft.insights/components', parameters('components_appi_func_raspberrypi_name'))]"
-            ],
-            "tags": {
-                "CostCenter": "prod"
-            },
-            "properties": {
-                "description": "Failure Anomalies notifies you of an unusual rise in the rate of failed HTTP requests or dependency calls.",
-                "state": "Enabled",
-                "severity": "Sev3",
-                "frequency": "PT1M",
-                "detector": {
-                    "id": "FailureAnomaliesDetector"
-                },
-                "scope": [
-                    "[resourceId('microsoft.insights/components', parameters('components_appi_func_raspberrypi_name'))]"
-                ],
-                "actionGroups": {
-                    "groupIds": [
-                        "[parameters('actiongroups_application_insights_smart_detection_externalid')]"
-                    ]
-                }
             }
         },
         {
