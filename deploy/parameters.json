@@ -1,0 +1,54 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "IotHubs_raspberrypiiot_hub_connectionString": {
+            "value": null
+        },
+        "IotHubs_raspberrypiiot_hub_containerName": {
+            "value": null
+        },
+        "vulnerabilityAssessments_Default_storageContainerPath": {
+            "value": null
+        },
+        "sites_func_raspberrypi_name": {
+            "value": null
+        },
+        "accounts_map_raspberrypi_name": {
+            "value": null
+        },
+        "IotHubs_raspberrypiiot_hub_name": {
+            "value": null
+        },
+        "storageAccounts_dlssynapselink_name": {
+            "value": null
+        },
+        "serverfarms_ASP_rgraspberrypi_80e9_name": {
+            "value": null
+        },
+        "workspaces_workspace_synapselink_name": {
+            "value": null
+        },
+        "components_appi_func_raspberrypi_name": {
+            "value": null
+        },
+        "storageAccounts_rgraspberrypiaec0_name": {
+            "value": null
+        },
+        "WebPubSub_pubsub_raspberrypi_name": {
+            "value": null
+        },
+        "databaseAccounts_cosmos_raspberrypi_name": {
+            "value": null
+        },
+        "smartdetectoralertrules_failure_anomalies___appi_func_raspberrypi_name": {
+            "value": null
+        },
+        "actiongroups_application_insights_smart_detection_externalid": {
+            "value": null
+        },
+        "workspaces_defaultworkspace_83343ae6_3277_475f_8be1_946e5d6d9359_eus_externalid": {
+            "value": null
+        }
+    }
+}
