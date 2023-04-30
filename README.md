@@ -2,7 +2,17 @@
 
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/pw93cnyur18dmo46ivnk.png)
 
-Air Quality Monitoring Delivery - Project created for Azure Blogathon event under the Social impact / Sustainability category. Idea is to make use of Battery operated Government Garbage collector vehicle to track air pollution in each street.
+Air Quality Monitoring Delivery - Project created for an event under the Social impact / Sustainability category. Idea is to make use of Battery operated Government Garbage collector vehicle to track air pollution in each street.
+
+# Problem Statement 
+
+We know that the intensity of air pollution is increasing all over the places, yet we are ignoring this fact in an assumption that we are immune to it. It is found recently by scientists that how bad this could impact us. Health impacts extends way beyond the respiratory illness. Through research it is found that , foetal development ,mental health and metabolic syndrome are impacted due to increase in air pollution. 
+
+Based on Dr. Sarath Guttikunda article, “A general understanding is that an ambient monitoring station can represent an area covering 2 km radius, which translates to 15 sq.km (rounded off).” But if we consider Chennai Metropolitan area, it is spread across 1189 sq km (planned to expand up to 8878 sq km), whereas we have only 8 air quality monitoring stations as of 23rd Jan 2023. It is evident that we don’t have enough stations to cover entire area. 
+
+Proposed solution is to make use of BOV Garbage Collector, food delivery partners/ Cabs (Ola, Uber, Swiggy, Zomato …etc.) to mount the air quality sensor that detects PM 2.5, 10 concentrations in the air and visualize it as a live heat map. It will be an effective solution than ambient monitoring station as it shows us exactly where the intensity of air pollution is higher on street basis.
+
+![](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/tj5actpkp3vo06j07vy4.png)
 
 # Architecutre
 
